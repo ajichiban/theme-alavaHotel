@@ -80,26 +80,8 @@ $(function() {
 
             })
         })
-        // FUNCION PRONTO A IMPLEMENTAR //
-        /* $('.btn-reserva').each(function(){
-        	$(this).click(function(){
-        		// agregar al boton la class actived
-        		$(this).toggleClass('btn-style-alava--actived')
-
-        		// quitar al boton de al lado el Actived
-        		$(this).siblings().removeClass('btn-style-alava--actived')
-        		
-        		//ocultar contenedor info
-        		$(this).parents('.container-suites')
-        			.find('.detalles-info')
-        			.slideUp()
-        		// mostrar contenedor reserva
-        		$(this).parents('.container-suites')
-        			.find('.detalles-reserva')
-        			.slideToggle()
-        		
-        	})
-        }) */
+        
+    
         /*=============================================
                     Menu Fijo
     =============================================*/
@@ -107,8 +89,6 @@ $(function() {
     let windowHeight = $(window).height();
     // altura de la barra del menu.
     let barraAltura = $('.barra-navegacion').innerHeight();
-
-
 
     //Cuanto scroll estamos haciedo.
     $(window).scroll(function() {
@@ -143,4 +123,18 @@ $(function() {
         }
 
     })
+
+    /*=============================================
+                Iniciar el Masonry 
+    =============================================*/
+    var $grid = $('.grid').imagesLoaded( function() {
+        // init Masonry after all images have loaded
+        $grid.masonry({
+            // options
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-sizer',
+            percentPosition: true,
+            /* horizontalOrder: true */
+        });
+    });
 });

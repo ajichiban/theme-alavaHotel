@@ -146,18 +146,95 @@ function alava_campos_contacto() {
 	) );
 
 	/* --- --- Redes sociales --- --- */
-	/* $alava_campos_contacto->add_field( array(
-		'name'        => esc_html__( 'Telefono :', 'cmb2' ),
-		'description' => esc_html__( 'Añada un Telefono', 'cmb2' ),
-		'id'          => $prefix . 'telefono',
-		'type' => 'text',
-	) ); */
 
 	$alava_campos_contacto->add_field( array(
 		'name'        => esc_html__( 'Instagram :', 'cmb2' ),
 		'description' => esc_html__( 'Añada la direccion de su instagram', 'cmb2' ),
 		'id'          => $prefix . 'instagram',
 		'type' => 'text',
+	) );
+
+}
+
+/*=============================================
+              		Page Alava 
+=============================================*/
+add_action( 'cmb2_admin_init', 'alava_campos_alava' );
+function alava_campos_alava() {
+    $prefix = 'alava_alava_';
+    
+    $id_alava= get_page_by_title('alava')->ID ;
+
+	$alava_campos_alava = new_cmb2_box( array(
+		'id'           => $prefix . 'alava',
+		'title'        => esc_html__( 'Campos Alava', 'cmb2' ),
+		'object_types' => array( 'page' ), // Post type
+		'context'      => 'normal',
+		'priority'     => 'high',
+		'show_in_rest' => WP_REST_Server::READABLE,
+		'show_names'   => true, // Show field names on the left
+		'show_on'      => array(
+			'id' => array( $id_alava),
+		), // Specific post IDs to display this metabox
+	) );
+
+	$alava_campos_alava->add_field( array(
+		'name'        => esc_html__( 'Filosofia :', 'cmb2' ),
+		'description' => esc_html__( 'Añada un texto con la filosofia y creencia que comparte su Sitio.', 'cmb2' ),
+		'id'          => $prefix . 'filosofia',
+		'type' => 'wysiwyg',
+        'options'=> array(
+            'textarea_rows'=> 5,
+        )
+	) );
+
+	$alava_campos_alava->add_field( array(
+		'name'        => esc_html__( 'Galeria :', 'cmb2' ),
+		'description' => esc_html__( 'Añada imagenes a la galeria (el numero optimo para conservar el diseño es de 9 imagenes , pero sientase libre de agregar cuantas desee)', 'cmb2' ),
+		'id'          => $prefix . 'galeria',
+		'type'        => 'file_list',
+		'preview_size' => array(100, 100)
+	) );
+
+	$alava_campos_alava->add_field( array(
+		'name'        => esc_html__( 'Informacion de pie de Pagina :', 'cmb2' ),
+		'description' => esc_html__( 'Añada informacion como direccion , numero de contacto , etc.', 'cmb2' ),
+		'id'          => $prefix . 'footer',
+		'type' => 'wysiwyg',
+        'options'=> array(
+            'textarea_rows'=> 5,
+        )
+	) );
+}
+
+/*=============================================
+              	Page Fotos 
+=============================================*/
+add_action( 'cmb2_admin_init', 'alava_campos_fotos' );
+function alava_campos_fotos() {
+    $prefix = 'alava_fotos_';
+    
+    $id_fotos= get_page_by_title('fotos')->ID ;
+
+	$alava_campos_fotos = new_cmb2_box( array(
+		'id'           => $prefix . 'fotos',
+		'title'        => esc_html__( 'Campos para Fotos', 'cmb2' ),
+		'object_types' => array( 'page' ), // Post type
+		'context'      => 'normal',
+		'priority'     => 'high',
+		'show_in_rest' => WP_REST_Server::READABLE,
+		'show_names'   => true, // Show field names on the left
+		'show_on'      => array(
+			'id' => array( $id_fotos),
+		), // Specific post IDs to display this metabox
+	) );
+	
+	$alava_campos_fotos->add_field( array(
+		'name'        => esc_html__( 'Galeria :', 'cmb2' ),
+		'description' => esc_html__( 'Añada imagenes a la galeria', 'cmb2' ),
+		'id'          => $prefix . 'galeria',
+		'type'        => 'file_list',
+		'preview_size' => array(100, 100)
 	) );
 
 }
